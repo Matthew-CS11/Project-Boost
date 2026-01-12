@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdeficrt7ly0v"]
+
+[ext_resource type="Script" uid="uid://cl2lrj8i4uxqb" path="res://levels/moving_obsticle.gd" id="1_d6n8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_covfu"]
+albedo_color = Color(1, 0, 0.016666412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6n8p"]
+albedo_color = Color(1, 0, 0.116666794, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ik5id"]
+material = SubResource("StandardMaterial3D_d6n8p")
+size = Vector3(3, 3, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_khbix"]
+points = PackedVector3Array(1.5, 1.5, 1.5, 1.5, 1.5, -1.5, -1.5, 1.5, 1.5, 1.5, -1.5, 1.5, 1.5, -1.5, -1.5, -1.5, 1.5, -1.5, -1.5, -1.5, 1.5, -1.5, -1.5, -1.5)
+
+[node name="Moving Obsticle" type="AnimatableBody3D" groups=["Hazard"]]
+script = ExtResource("1_d6n8p")
+destination = Vector3(0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_covfu")
+mesh = SubResource("BoxMesh_ik5id")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_khbix")
