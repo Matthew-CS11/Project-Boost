@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cedbkjdbw24sq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boad6"]
+albedo_color = Color(0, 0.2666664, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_boad6"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgyib"]
+albedo_color = Color(0, 0.2666664, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgyib"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.5
+rings = 7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg6s5"]
+albedo_color = Color(0, 0.8833332, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hg6s5"]
+material = SubResource("StandardMaterial3D_hg6s5")
+top_radius = 0.1
+bottom_radius = 0.15
+height = 0.5
+
+[node name="Body" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_boad6")
+mesh = SubResource("CylinderMesh_boad6")
+
+[node name="Cockpit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9961757, 0)
+material_override = SubResource("StandardMaterial3D_rgyib")
+mesh = SubResource("CylinderMesh_rgyib")
+skeleton = NodePath("../..")
+
+[node name="Body2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.018621871, 0.36688006, 0.93008196, -0.12466542, 0.9221318, -0.36623994, -0.992024, -0.1227691, 0.028565427, -0.19285217, -0.65357226, -0.0015289783)
+mesh = SubResource("CylinderMesh_hg6s5")
+skeleton = NodePath("../..")
+
+[node name="Body3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.078852616, -0.42763484, 0.90050584, -0.09833873, 0.895576, 0.43390477, -0.992024, -0.1227691, 0.028565427, 0.18584135, -0.65357226, -0.0015289783)
+mesh = SubResource("CylinderMesh_hg6s5")
+skeleton = NodePath("../..")
+
+[node name="Body4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.028601797, 0.0014665733, 0.9995898, -0.43177295, 0.90191495, 0.01103139, -0.90152866, -0.43191135, 0.026429562, 0.009532578, -0.64458543, 0.2078399)
+mesh = SubResource("CylinderMesh_hg6s5")
+skeleton = NodePath("../..")
+
+[node name="Body5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.028601797, 0.0014665743, 0.9995898, 0.31476897, 0.94911146, -0.010399055, -0.9487372, 0.31493735, 0.026684698, 0.039002277, -0.65357226, -0.18381739)
+mesh = SubResource("CylinderMesh_hg6s5")
+skeleton = NodePath("../..")
