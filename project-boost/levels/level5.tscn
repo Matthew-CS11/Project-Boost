@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtx50ojksvlra"]
+
+[ext_resource type="PackedScene" uid="uid://bxh2pt6lkkjbp" path="res://levels/floor.tscn" id="1_s216a"]
+[ext_resource type="Script" uid="uid://c312t3044wjjt" path="res://levels/landingbox.gd" id="2_bufqw"]
+[ext_resource type="PackedScene" uid="uid://c361lxrkkkm17" path="res://player/player.tscn" id="3_0dsjn"]
+[ext_resource type="PackedScene" uid="uid://cdeficrt7ly0v" path="res://levels/moving_obsticle.tscn" id="4_ldkys"]
+[ext_resource type="PackedScene" uid="uid://dh5ov2f8ne8h8" path="res://UI/ui.tscn" id="5_bufqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80vhd"]
+albedo_color = Color(0, 0.5999999, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjsbj"]
+albedo_color = Color(0, 1, 0.116666794, 1)
+
+[node name="level" type="Node3D"]
+
+[node name="UI" parent="." instance=ExtResource("5_bufqw")]
+
+[node name="Floor" parent="." instance=ExtResource("1_s216a")]
+
+[node name="launchpad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
+use_collision = true
+size = Vector3(2, 0.3, 2)
+material = SubResource("StandardMaterial3D_80vhd")
+
+[node name="landingbox" type="CSGBox3D" parent="." groups=["Goal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+use_collision = true
+size = Vector3(2, 0.3, 2)
+material = SubResource("StandardMaterial3D_hjsbj")
+script = ExtResource("2_bufqw")
+file_path = "uid://dtx50ojksvlra"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9897787, 0.14261165, 0, -0.14261165, 0.9897787, 0, 5.3, 7.275)
+fov = 100.9
+
+[node name="Player" parent="." instance=ExtResource("3_0dsjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.1500814, 0)
+contact_monitor = true
+max_contacts_reported = 10
+start_fuel = 125.0
+
+[node name="Moving Obsticle" parent="." instance=ExtResource("4_ldkys")]
+duration = 1.0
+
+[node name="Moving Obsticle2" parent="." instance=ExtResource("4_ldkys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.925371, 0)
+duration = 1.0
+
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
